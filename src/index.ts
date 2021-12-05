@@ -8,6 +8,10 @@ import {
   getLifeSupportRating,
   getPowerConsumption,
 } from './days/03-binary-diagnostic';
+import {
+  getBingoFirstWinScore,
+  getBingoLastWinScore,
+} from './days/04-giant-squid';
 
 const puzzleKeys = [
   'Day1Part1',
@@ -16,6 +20,8 @@ const puzzleKeys = [
   'Day2Part2',
   'Day3Part1',
   'Day3Part2',
+  'Day4Part1',
+  'Day4Part2',
 ] as const;
 type PuzzleKey = typeof puzzleKeys[number];
 
@@ -32,6 +38,8 @@ const solutions: { [key in PuzzleKey]: PuzzleSolution } = {
   Day2Part2: diveHarder,
   Day3Part1: getPowerConsumption,
   Day3Part2: getLifeSupportRating,
+  Day4Part1: getBingoFirstWinScore,
+  Day4Part2: getBingoLastWinScore,
 };
 
 const program = new Command();
