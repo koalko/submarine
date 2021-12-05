@@ -12,6 +12,10 @@ import {
   getBingoFirstWinScore,
   getBingoLastWinScore,
 } from './days/04-giant-squid';
+import {
+  getOverlapsCount,
+  getOverlapsCountWithDiagonals,
+} from './days/05-hydrothermal-venture';
 
 const puzzleKeys = [
   'Day1Part1',
@@ -22,6 +26,8 @@ const puzzleKeys = [
   'Day3Part2',
   'Day4Part1',
   'Day4Part2',
+  'Day5Part1',
+  'Day5Part2',
 ] as const;
 type PuzzleKey = typeof puzzleKeys[number];
 
@@ -40,6 +46,8 @@ const solutions: { [key in PuzzleKey]: PuzzleSolution } = {
   Day3Part2: getLifeSupportRating,
   Day4Part1: getBingoFirstWinScore,
   Day4Part2: getBingoLastWinScore,
+  Day5Part1: getOverlapsCount,
+  Day5Part2: getOverlapsCountWithDiagonals,
 };
 
 const program = new Command();
