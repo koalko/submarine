@@ -1,4 +1,4 @@
-# AdventOfCode 2021
+# [AdventOfCode 2021](https://adventofcode.com/2021) in TypeScript
 
 Build:
 
@@ -16,13 +16,14 @@ Run options (type `npm start -- --help` to get these):
 
 ```
 Options:
-  -i, --input <file path>  Input file path
-  -p, --puzzle <puzzle>    Puzzle ID, format: DayXPartY
-  -h, --help               display help for command
+  -i, --input <file path>   Input file path
+  -d, --day <day number>    Challenge day (https://adventofcode.com/2021)
+  -p, --part <part number>  Challenge part (usually 1 or 2)
+  -h, --help                display help for command
 ```
 
 Run (with example options):
 
 ```
-npm start -- -i ./input/day3 -p Day3Part2
+npm start -- -i ./input/day3 -d 3 -p 2
 ```
