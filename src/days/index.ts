@@ -10,6 +10,10 @@ import {
   getOverlapsCountWithDiagonals,
 } from './05-hydrothermal-venture';
 import { breedTheFish } from './06-lanternfish';
+import {
+  alignTheCrabsCheaply,
+  alignTheCrabsPricey,
+} from './07-the-treachery-of-whales';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -39,6 +43,10 @@ const solutions: Solutions = {
   6: {
     1: breedTheFish.bind(null, 80),
     2: breedTheFish.bind(null, 256),
+  },
+  7: {
+    1: alignTheCrabsCheaply,
+    2: alignTheCrabsPricey,
   },
 };
 
