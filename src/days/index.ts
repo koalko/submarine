@@ -11,8 +11,8 @@ import {
 } from './05-hydrothermal-venture';
 import { breedTheFish } from './06-lanternfish';
 import {
-  alignTheCrabsCheaply,
-  alignTheCrabsPricey,
+  alignThriftyCrabs,
+  alignWastefulCrabs,
 } from './07-the-treachery-of-whales';
 
 type PuzzleSolution = (input: string[]) => number;
@@ -45,8 +45,8 @@ const solutions: Solutions = {
     2: breedTheFish.bind(null, 256),
   },
   7: {
-    1: alignTheCrabsCheaply,
-    2: alignTheCrabsPricey,
+    1: alignThriftyCrabs,
+    2: alignWastefulCrabs,
   },
 };
 

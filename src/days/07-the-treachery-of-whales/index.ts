@@ -7,10 +7,7 @@ type FuelCostCalculator = (
   targetPosition: number
 ) => number;
 
-function alignTheCrabs(
-  getFuelCost: FuelCostCalculator,
-  input: string[]
-): number {
+function alignCrabs(getFuelCost: FuelCostCalculator, input: string[]): number {
   const positions = parse(input);
   const minPosition = Math.min(...positions);
   const maxPosition = Math.max(...positions);
@@ -29,13 +26,13 @@ function alignTheCrabs(
   return minFuelCost ?? 0;
 }
 
-const alignTheCrabsCheaply = alignTheCrabs.bind(
+const alignThriftyCrabs = alignCrabs.bind(
   null,
   (currentPosition, targetPosition) =>
     Math.abs(targetPosition - currentPosition)
 );
 
-const alignTheCrabsPricey = alignTheCrabs.bind(
+const alignWastefulCrabs = alignCrabs.bind(
   null,
   (currentPosition, targetPosition) => {
     const range = Math.abs(targetPosition - currentPosition);
@@ -43,4 +40,4 @@ const alignTheCrabsPricey = alignTheCrabs.bind(
   }
 );
 
-export { alignTheCrabsCheaply, alignTheCrabsPricey };
+export { alignThriftyCrabs, alignWastefulCrabs };
