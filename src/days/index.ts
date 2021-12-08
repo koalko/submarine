@@ -14,6 +14,10 @@ import {
   alignThriftyCrabs,
   alignWastefulCrabs,
 } from './07-the-treachery-of-whales';
+import {
+  countSpecialDigits,
+  decodeGlitchedDigits,
+} from './08-seven-segment-search';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -47,6 +51,10 @@ const solutions: Solutions = {
   7: {
     1: alignThriftyCrabs,
     2: alignWastefulCrabs,
+  },
+  8: {
+    1: countSpecialDigits,
+    2: decodeGlitchedDigits,
   },
 };
 
