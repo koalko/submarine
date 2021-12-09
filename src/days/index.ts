@@ -18,6 +18,7 @@ import {
   countSpecialDigits,
   decodeGlitchedDigits,
 } from './08-seven-segment-search';
+import { getLargestBasinsSize, getLowPointsRiskLevel } from './09-smoke-basin';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -55,6 +56,10 @@ const solutions: Solutions = {
   8: {
     1: countSpecialDigits,
     2: decodeGlitchedDigits,
+  },
+  9: {
+    1: getLowPointsRiskLevel,
+    2: getLargestBasinsSize.bind(null, 3),
   },
 };
 

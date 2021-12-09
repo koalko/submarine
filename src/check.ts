@@ -1,5 +1,4 @@
 // Check answers locally; hardcoded answers and input paths
-import { assert } from 'console';
 import { promises } from 'fs';
 import { resolve } from 'path';
 
@@ -41,9 +40,14 @@ const answers: Answers = {
     1: 344,
     2: 1048410,
   },
+  9: {
+    1: 591,
+    2: 1113424,
+  },
 };
 
 async function check() {
+  let isOk = true;
   for (const day of Object.keys(answers)) {
     for (const part of Object.keys(answers[day])) {
       const input = await promises.readFile(
@@ -52,12 +56,17 @@ async function check() {
       );
       const lines = input.split('\n').map((line) => line.trim());
       const result = solutions[day][part](lines);
-      assert(
-        result === answers[day][part],
-        `day ${day}, part ${part}: expected: ${answers[day][part]}, got: ${result}.`
-      );
+      if (result === answers[day][part]) {
+        console.info(`OK: day ${day}, part ${part}`);
+      } else {
+        isOk = false;
+        console.info(
+          `FAILED: day ${day}, part ${part}: expected: ${answers[day][part]}, got: ${result}.`
+        );
+      }
     }
   }
+  console.info(`---------------\nSummary: ${isOk ? 'OK' : 'FAILED'}`);
 }
 
 check();

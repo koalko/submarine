@@ -86,9 +86,7 @@ function decodeGlitchedDigits(input: string[]): number {
 }
 
 function countSpecialDigits(input: string[]): number {
-  const output = input
-    .map((line) => line.split('|')[1].trim().split(' '))
-    .flat();
+  const output = input.map(getOutputGlitchedDigits).flat();
   return output.filter((code) => [2, 3, 4, 7].includes(code.length)).length;
 }
 
