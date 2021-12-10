@@ -44,6 +44,10 @@ const answers: Answers = {
     1: 591,
     2: 1113424,
   },
+  10: {
+    1: 462693,
+    2: 3094671161,
+  },
 };
 
 async function check() {

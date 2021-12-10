@@ -19,6 +19,10 @@ import {
   decodeGlitchedDigits,
 } from './08-seven-segment-search';
 import { getLargestBasinsSize, getLowPointsRiskLevel } from './09-smoke-basin';
+import {
+  calculateCompletionScore,
+  calculateSyntaxScore,
+} from './10-syntax-scoring';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -60,6 +64,10 @@ const solutions: Solutions = {
   9: {
     1: getLowPointsRiskLevel,
     2: getLargestBasinsSize.bind(null, 3),
+  },
+  10: {
+    1: calculateSyntaxScore,
+    2: calculateCompletionScore,
   },
 };
 
