@@ -6,5 +6,6 @@
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "cSpell.words": [
     "lanternfish"
-  ]
+  ],
+  "editor.tabSize": 2
 }

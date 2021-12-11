@@ -23,6 +23,7 @@ import {
   calculateCompletionScore,
   calculateSyntaxScore,
 } from './10-syntax-scoring';
+import { countFlashes, ohSoBright } from './11-dumbo-octopus';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -68,6 +69,10 @@ const solutions: Solutions = {
   10: {
     1: calculateSyntaxScore,
     2: calculateCompletionScore,
+  },
+  11: {
+    1: countFlashes.bind(null, 100),
+    2: ohSoBright,
   },
 };
 
