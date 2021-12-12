@@ -24,6 +24,11 @@ import {
   calculateSyntaxScore,
 } from './10-syntax-scoring';
 import { countFlashes, ohSoBright } from './11-dumbo-octopus';
+import {
+  canVisitAnySmallCaveOnce,
+  canVisitOneSmallCaveTwice,
+  countPaths,
+} from './12-passage-pathing';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -73,6 +78,10 @@ const solutions: Solutions = {
   11: {
     1: countFlashes.bind(null, 100),
     2: ohSoBright,
+  },
+  12: {
+    1: countPaths.bind(null, canVisitAnySmallCaveOnce),
+    2: countPaths.bind(null, canVisitOneSmallCaveTwice),
   },
 };
 

@@ -1,4 +1,5 @@
 // Check answers locally; hardcoded answers and input paths
+
 import { promises } from 'fs';
 import { resolve } from 'path';
 
@@ -51,6 +52,10 @@ const answers: Answers = {
   11: {
     1: 1739,
     2: 324,
+  },
+  12: {
+    1: 5228,
+    2: 131228,
   },
 };
 
