@@ -1,5 +1,11 @@
 # [AdventOfCode 2021](https://adventofcode.com/2021) in TypeScript
 
+Install dependencies:
+
+```
+npm install
+```
+
 Build:
 
 ```
