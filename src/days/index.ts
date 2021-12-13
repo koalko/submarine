@@ -29,6 +29,7 @@ import {
   canVisitOneSmallCaveTwice,
   countPaths,
 } from './12-passage-pathing';
+import { foldAllTheWay, foldOnce } from './13-transparent-origami';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -82,6 +83,10 @@ const solutions: Solutions = {
   12: {
     1: countPaths.bind(null, canVisitAnySmallCaveOnce),
     2: countPaths.bind(null, canVisitOneSmallCaveTwice),
+  },
+  13: {
+    1: foldOnce,
+    2: foldAllTheWay,
   },
 };
 
