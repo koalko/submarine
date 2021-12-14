@@ -30,6 +30,7 @@ import {
   countPaths,
 } from './12-passage-pathing';
 import { foldAllTheWay, foldOnce } from './13-transparent-origami';
+import { countPolymerElements } from './14-extended-polymerization';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -87,6 +88,10 @@ const solutions: Solutions = {
   13: {
     1: foldOnce,
     2: foldAllTheWay,
+  },
+  14: {
+    1: countPolymerElements.bind(null, 10),
+    2: countPolymerElements.bind(null, 40),
   },
 };
 
