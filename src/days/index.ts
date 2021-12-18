@@ -31,6 +31,12 @@ import {
 } from './12-passage-pathing';
 import { foldAllTheWay, foldOnce } from './13-transparent-origami';
 import { countPolymerElements } from './14-extended-polymerization';
+import { calculateLowestRiskXL, calculateLowestRiskXS } from './15-chiton';
+import { getVersionNumberSum, solveExpression } from './16-packet-decoder';
+import {
+  calculateFinalSumMagnitude,
+  calculateLargestSumMagnitude,
+} from './18-snailfish';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -92,6 +98,18 @@ const solutions: Solutions = {
   14: {
     1: countPolymerElements.bind(null, 10),
     2: countPolymerElements.bind(null, 40),
+  },
+  15: {
+    1: calculateLowestRiskXS,
+    2: calculateLowestRiskXL,
+  },
+  16: {
+    1: getVersionNumberSum,
+    2: solveExpression,
+  },
+  18: {
+    1: calculateFinalSumMagnitude,
+    2: calculateLargestSumMagnitude,
   },
 };
 
