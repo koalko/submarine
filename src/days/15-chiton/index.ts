@@ -89,9 +89,10 @@ function traverse(riskMap: Matrix) {
 
   const maxDistance = 2 * Math.max(pathMap.width, pathMap.height);
 
-  const walkForward = (initDistance = 0) => {
+  // TODO: Optimize
+  const walk = () => {
     let changeCount = 0;
-    for (let distance = initDistance; distance < maxDistance; distance += 1) {
+    for (let distance = 0; distance < maxDistance; distance += 1) {
       const [xMin, xMax] =
         distance < pathMap.width
           ? [0, distance]
@@ -100,30 +101,7 @@ function traverse(riskMap: Matrix) {
         const y = distance - x;
         const minRiskLevel = Math.min(
           pathMap.get({ x: x - 1, y }) ?? Number.MAX_SAFE_INTEGER,
-          pathMap.get({ x, y: y - 1 }) ?? Number.MAX_SAFE_INTEGER
-        );
-        const pathRiskLevel = (riskMap.get({ x, y }) ?? 0) + minRiskLevel;
-        const oldRiskLevel = pathMap.get({ x, y }) ?? Number.MAX_SAFE_INTEGER;
-        if (pathRiskLevel < oldRiskLevel) {
-          pathMap.set({ x, y }, pathRiskLevel);
-          changeCount += 1;
-        }
-      }
-    }
-    return changeCount;
-  };
-
-  // This is embarrassing -_-
-  const walkBackward = () => {
-    let changeCount = 0;
-    for (let distance = maxDistance; distance > 0; distance -= 1) {
-      const [xMin, xMax] =
-        distance < pathMap.width
-          ? [0, distance]
-          : [distance - (pathMap.width - 1), pathMap.width - 1];
-      for (let x = xMin; x <= xMax; x += 1) {
-        const y = distance - x;
-        const minRiskLevel = Math.min(
+          pathMap.get({ x, y: y - 1 }) ?? Number.MAX_SAFE_INTEGER,
           pathMap.get({ x: x + 1, y }) ?? Number.MAX_SAFE_INTEGER,
           pathMap.get({ x, y: y + 1 }) ?? Number.MAX_SAFE_INTEGER
         );
@@ -138,12 +116,7 @@ function traverse(riskMap: Matrix) {
     return changeCount;
   };
 
-  let changeCount;
-  do {
-    changeCount = walkForward();
-    if (changeCount === 0) break;
-    changeCount = walkBackward();
-  } while (changeCount > 0);
+  while (walk() > 0);
 
   return (
     pathMap.get({ x: riskMap.width - 1, y: riskMap.height - 1 }) ??
