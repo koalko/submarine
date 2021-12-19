@@ -37,6 +37,7 @@ import {
   calculateFinalSumMagnitude,
   calculateLargestSumMagnitude,
 } from './18-snailfish';
+import { countBeacons, getMaxManhattanDistance } from './19-beacon-scanner';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -110,6 +111,10 @@ const solutions: Solutions = {
   18: {
     1: calculateFinalSumMagnitude,
     2: calculateLargestSumMagnitude,
+  },
+  19: {
+    1: countBeacons,
+    2: getMaxManhattanDistance,
   },
 };
 

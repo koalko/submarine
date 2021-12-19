@@ -77,6 +77,10 @@ const answers: Answers = {
     1: 4243,
     2: 4701,
   },
+  19: {
+    1: 362,
+    2: 12204,
+  },
 };
 
 async function check() {
