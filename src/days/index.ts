@@ -33,6 +33,7 @@ import { foldAllTheWay, foldOnce } from './13-transparent-origami';
 import { countPolymerElements } from './14-extended-polymerization';
 import { calculateLowestRiskXL, calculateLowestRiskXS } from './15-chiton';
 import { getVersionNumberSum, solveExpression } from './16-packet-decoder';
+import { countCorrectVelocities, findHighestProbeY } from './17-trick-shot';
 import {
   calculateFinalSumMagnitude,
   calculateLargestSumMagnitude,
@@ -107,6 +108,10 @@ const solutions: Solutions = {
   16: {
     1: getVersionNumberSum,
     2: solveExpression,
+  },
+  17: {
+    1: findHighestProbeY,
+    2: countCorrectVelocities,
   },
   18: {
     1: calculateFinalSumMagnitude,
