@@ -6,6 +6,7 @@ interface Point {
 
 type PointKey = string;
 type BeaconMap = Map<number, Point[]>;
+type Rotate = (point: Point) => Point;
 
 function getDistance(pointFrom: Point, pointTo: Point): Point {
   return {
@@ -21,40 +22,40 @@ const getManhattanDistance = (pointFrom: Point, pointTo: Point) =>
   Math.abs(pointFrom.z - pointTo.z);
 
 // TODO: Formalize
-const getRotations = ({ x, y, z }: Point): Point[] => [
+const rotations: Rotate[] = [
   // z+
-  { x: x, y: y, z: z },
-  { x: y, y: -x, z: z },
-  { x: -x, y: -y, z: z },
-  { x: -y, y: x, z: z },
+  ({ x, y, z }: Point) => ({ x: x, y: y, z: z }),
+  ({ x, y, z }: Point) => ({ x: y, y: -x, z: z }),
+  ({ x, y, z }: Point) => ({ x: -x, y: -y, z: z }),
+  ({ x, y, z }: Point) => ({ x: -y, y: x, z: z }),
   // z-
-  { x: -x, y: y, z: -z },
-  { x: y, y: x, z: -z },
-  { x: x, y: -y, z: -z },
-  { x: -y, y: -x, z: -z },
+  ({ x, y, z }: Point) => ({ x: -x, y: y, z: -z }),
+  ({ x, y, z }: Point) => ({ x: y, y: x, z: -z }),
+  ({ x, y, z }: Point) => ({ x: x, y: -y, z: -z }),
+  ({ x, y, z }: Point) => ({ x: -y, y: -x, z: -z }),
   // x+
-  { x: -z, y: y, z: x },
-  { x: y, y: z, z: x },
-  { x: z, y: -y, z: x },
-  { x: -y, y: -z, z: x },
+  ({ x, y, z }: Point) => ({ x: -z, y: y, z: x }),
+  ({ x, y, z }: Point) => ({ x: y, y: z, z: x }),
+  ({ x, y, z }: Point) => ({ x: z, y: -y, z: x }),
+  ({ x, y, z }: Point) => ({ x: -y, y: -z, z: x }),
   // x-
-  { x: z, y: y, z: -x },
-  { x: y, y: -z, z: -x },
-  { x: -z, y: -y, z: -x },
-  { x: -y, y: z, z: -x },
+  ({ x, y, z }: Point) => ({ x: z, y: y, z: -x }),
+  ({ x, y, z }: Point) => ({ x: y, y: -z, z: -x }),
+  ({ x, y, z }: Point) => ({ x: -z, y: -y, z: -x }),
+  ({ x, y, z }: Point) => ({ x: -y, y: z, z: -x }),
   // y+
-  { x: z, y: x, z: y },
-  { x: x, y: -z, z: y },
-  { x: -z, y: -x, z: y },
-  { x: -x, y: z, z: y },
+  ({ x, y, z }: Point) => ({ x: z, y: x, z: y }),
+  ({ x, y, z }: Point) => ({ x: x, y: -z, z: y }),
+  ({ x, y, z }: Point) => ({ x: -z, y: -x, z: y }),
+  ({ x, y, z }: Point) => ({ x: -x, y: z, z: y }),
   // y-
-  { x: -z, y: x, z: -y },
-  { x: x, y: z, z: -y },
-  { x: z, y: -x, z: -y },
-  { x: -x, y: -z, z: -y },
+  ({ x, y, z }: Point) => ({ x: -z, y: x, z: -y }),
+  ({ x, y, z }: Point) => ({ x: x, y: z, z: -y }),
+  ({ x, y, z }: Point) => ({ x: z, y: -x, z: -y }),
+  ({ x, y, z }: Point) => ({ x: -x, y: -z, z: -y }),
 ];
 
-const rotationsCount = getRotations({ x: 0, y: 0, z: 0 }).length;
+const rotationsCount = rotations.length;
 
 const point2key = ({ x, y, z }: Point): PointKey => `${x}:${y}:${z}`;
 const key2point = (key: PointKey): Point => {
@@ -62,12 +63,18 @@ const key2point = (key: PointKey): Point => {
   return { x, y, z };
 };
 
-function shift(point: Point, distance: Point): Point {
-  return {
-    x: point.x + distance.x,
-    y: point.y + distance.y,
-    z: point.z + distance.z,
-  };
+const shift = (point: Point, distance: Point): Point => ({
+  x: point.x + distance.x,
+  y: point.y + distance.y,
+  z: point.z + distance.z,
+});
+
+const rotate = (type: number, point: Point): Point => rotations[type](point);
+
+function addToPointKeySet(pointKeySet: Set<PointKey>, points: Point[]) {
+  for (const point of points) {
+    pointKeySet.add(point2key(point));
+  }
 }
 
 function parse(input: string[]): BeaconMap {
@@ -87,12 +94,6 @@ function parse(input: string[]): BeaconMap {
     }
   }
   return beaconMap;
-}
-
-function addToPointKeySet(pointKeySet: Set<PointKey>, points: Point[]) {
-  for (const point of points) {
-    pointKeySet.add(point2key(point));
-  }
 }
 
 // TODO: Optimize
@@ -115,12 +116,13 @@ function rebaseScanners(input: string[]) {
     for (const [isolatedScannerNo, isolatedBeacons] of scanners) {
       for (const [rebasedScannerNo, rebasedBeacons] of rebasedScanners) {
         if (rebasedScanners.get(isolatedScannerNo)) continue;
-        const isolatedScannerRotations = isolatedBeacons.map(getRotations);
         for (let rotationNo = 0; rotationNo < rotationsCount; rotationNo += 1) {
+          const isolatedBeaconsRotated = isolatedBeacons.map(
+            rotate.bind(null, rotationNo)
+          );
           const distances = new Map<PointKey, number>();
           for (const rebasedBeacon of rebasedBeacons) {
-            for (const isolatedBeaconRotations of isolatedScannerRotations) {
-              const isolatedBeacon = isolatedBeaconRotations[rotationNo];
+            for (const isolatedBeacon of isolatedBeaconsRotated) {
               const distanceKey = point2key(
                 getDistance(rebasedBeacon, isolatedBeacon)
               );
@@ -136,9 +138,7 @@ function rebaseScanners(input: string[]) {
               scannerCoordinates.set(isolatedScannerNo, distance);
               rebasedScanners.set(
                 isolatedScannerNo,
-                isolatedScannerRotations.map((rotations) =>
-                  shift(rotations[rotationNo], distance)
-                )
+                isolatedBeaconsRotated.map((beacon) => shift(beacon, distance))
               );
               addToPointKeySet(
                 uniqueBeacons,
