@@ -40,6 +40,7 @@ import {
 } from './18-snailfish';
 import { countBeacons, getMaxManhattanDistance } from './19-beacon-scanner';
 import { countLitPixels } from './20-trench-map';
+import { getBoringDiceScore, getDiracDiceScore } from './21-dirac-dice';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -125,6 +126,10 @@ const solutions: Solutions = {
   20: {
     1: countLitPixels.bind(0, 2),
     2: countLitPixels.bind(0, 50),
+  },
+  21: {
+    1: getBoringDiceScore,
+    2: getDiracDiceScore,
   },
 };
 
