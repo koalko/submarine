@@ -33,11 +33,13 @@ import { foldAllTheWay, foldOnce } from './13-transparent-origami';
 import { countPolymerElements } from './14-extended-polymerization';
 import { calculateLowestRiskXL, calculateLowestRiskXS } from './15-chiton';
 import { getVersionNumberSum, solveExpression } from './16-packet-decoder';
+import { countCorrectVelocities, findHighestProbeY } from './17-trick-shot';
 import {
   calculateFinalSumMagnitude,
   calculateLargestSumMagnitude,
 } from './18-snailfish';
 import { countBeacons, getMaxManhattanDistance } from './19-beacon-scanner';
+import { countLitPixels } from './20-trench-map';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -108,6 +110,10 @@ const solutions: Solutions = {
     1: getVersionNumberSum,
     2: solveExpression,
   },
+  17: {
+    1: findHighestProbeY,
+    2: countCorrectVelocities,
+  },
   18: {
     1: calculateFinalSumMagnitude,
     2: calculateLargestSumMagnitude,
@@ -115,6 +121,10 @@ const solutions: Solutions = {
   19: {
     1: countBeacons,
     2: getMaxManhattanDistance,
+  },
+  20: {
+    1: countLitPixels.bind(0, 2),
+    2: countLitPixels.bind(0, 50),
   },
 };
 
