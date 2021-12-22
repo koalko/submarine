@@ -41,6 +41,7 @@ import {
 import { countBeacons, getMaxManhattanDistance } from './19-beacon-scanner';
 import { countLitPixels } from './20-trench-map';
 import { getBoringDiceScore, getDiracDiceScore } from './21-dirac-dice';
+import { rebootTheReactor, rebootTheReactorRedux } from './22-reactor-reboot';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -130,6 +131,10 @@ const solutions: Solutions = {
   21: {
     1: getBoringDiceScore,
     2: getDiracDiceScore,
+  },
+  22: {
+    1: rebootTheReactorRedux,
+    2: rebootTheReactor,
   },
 };
 
