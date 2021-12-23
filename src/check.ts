@@ -97,6 +97,10 @@ const answers: Answers = {
     1: 576028,
     2: 1387966280636636,
   },
+  23: {
+    1: 11320,
+    2: 49532,
+  },
 };
 
 async function check() {
@@ -107,7 +111,7 @@ async function check() {
         resolve(__dirname, `../../input/day${day}`),
         { encoding: 'utf-8' }
       );
-      const lines = input.split('\n').map((line) => line.trim());
+      const lines = input.split('\n');
       const result = solutions[day][part](lines);
       if (result === answers[day][part]) {
         console.info(`OK: day ${day}, part ${part}`);

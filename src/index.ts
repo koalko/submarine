@@ -24,7 +24,7 @@ async function run() {
       )
     );
   const input = await promises.readFile(args.input, { encoding: 'utf-8' });
-  const lines = input.split('\n').map((line) => line.trim());
+  const lines = input.split('\n');
   const result = solution(lines);
   console.info(`Answer: ${result}`);
   return true;
