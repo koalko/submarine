@@ -43,6 +43,11 @@ import { countLitPixels } from './20-trench-map';
 import { getBoringDiceScore, getDiracDiceScore } from './21-dirac-dice';
 import { rebootTheReactor, rebootTheReactorRedux } from './22-reactor-reboot';
 import { organizeAmphipods, organizeUnfoldedAmphipods } from './23-amphipod';
+import {
+  findLargestMonad,
+  findSmallestMonad,
+} from './24-arithmetic-logic-unit';
+import { landTheSubmarine } from './25-sea-cucumber';
 
 type PuzzleSolution = (input: string[]) => number;
 type DailySolutions = { [key: string]: PuzzleSolution };
@@ -140,6 +145,13 @@ const solutions: Solutions = {
   23: {
     1: organizeAmphipods,
     2: organizeUnfoldedAmphipods,
+  },
+  24: {
+    1: findLargestMonad,
+    2: findSmallestMonad,
+  },
+  25: {
+    1: landTheSubmarine,
   },
 };
 
